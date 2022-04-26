@@ -11,4 +11,6 @@ public interface studentMapper {
     public int addStudent(students student);
 
     public List<students> selectById(int id);
+
+    public List<students> selectByName(String name);
 }

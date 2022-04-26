@@ -38,12 +38,13 @@ class studentMapperTest {
         }
     }
 
-
-//    @Test
-//    void selectStudent() {
-//        List<students> students = studentMapper.selectStudent();
-//        for (com.example.mybatis.model.students a : students){
-//            System.out.println(a.toString());
-//        }
-//    }
+    @Test
+    void selectByName() {
+        List<students> students = studentMapper.selectByName("西安人的城墙下");
+        System.out.println();
+        System.out.println("--------------------------------------");
+        System.out.println(students.toString());
+        System.out.println("--------------------------------------");
+        System.out.println();
+    }
 }

@@ -5,6 +5,14 @@
 <!-- 定义映射关系，关联dao层被@Mapper接口  -->
 <!-- namespace 是用来关联的全路径-->
 <mapper namespace = "com.example.mybatis.dao.studentMapper">
+<!--type 为要映射的实体类类型的全路径-->
+    <resultMap id="map" type="com.example.mybatis.model.students">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="age" property="age"/>
+        <result column="sec" property="sec"/>
+    </resultMap>
+
 <!-- id 是接口中的方法名称 -->
 <!-- parameterType 方法中参数的类型，如果是引用对象 那么也必须要是全路径 ，也可以省略不写  -->
     <insert id="addStudent" parameterType="com.example.mybatis.model.students">
@@ -14,5 +22,9 @@
 <!-- resultType 返回类型，如果实体类和数据库表的字段一致，则可以直接写引用对象的全路径   -->
     <select id="selectById" parameterType="Integer" resultType="com.example.mybatis.model.students">
         select * from students where id = #{id};
+    </select>
+<!-- resultMap 结果的映射，针对表字段与实体类不统一的情况 这里的resultMap="map"  map只是对其命名,是id，其映射关系需要单独构造-->
+    <select id="selectByName" resultMap="map">
+        select * from students where name = #{name};
     </select>
 </mapper>

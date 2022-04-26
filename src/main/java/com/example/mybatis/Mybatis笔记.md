@@ -39,4 +39,19 @@
     此时还不可以直接执行，因为这个单元测试是依赖于Spring框架的
     因此，需要在测试类上加上@SpringBootTest, 这次再启动时就会加载spring框，加@Transactional 正常测试功能 但是不污染数据库
     
-6. 
+6. select
+    [resultType 返回类型，如果实体类和数据库表的字段一致，则可以直接写引用对象的全路径,也可以不写]
+        <select id="selectById" parameterType="Integer" resultType="com.example.mybatis.model.students">
+            select * from students where id = #{id};
+        </select>
+    [resultMap 结果的映射，针对表字段与实体类不统一的情况 这里的resultMap="map"  map只是对其命名,是id，其映射关系需要单独构造]
+        <select id="selectByName" resultMap="map">
+            select * from students where name = #{name};
+        </select>
+    [resultMap="id"的配置] 将表中字段(column) 与 实体类属性(property)相匹配 , 这就建立好了映射，表和实体类就一一对应了
+        <resultMap id="map" type="com.example.mybatis.model.students">
+                <id column="id" property="id"/>
+                <result column="Student_Name" property="name"/>
+                <result column="Student_Age" property="age"/>
+                <result column="Student_Sec" property="sec"/>
+        </resultMap>
