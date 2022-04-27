@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface studentMapper {
-    public int addStudent(students student);
+    public void addStudent(students student);
 
     public List<students> selectById(int id);
 

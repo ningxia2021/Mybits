@@ -26,15 +26,18 @@ class studentMapperTest {
         students.setName("西安人不管到哪儿");
         students.setAge(23);
         students.setSec("都不能不吃泡馍");
-        int s = studentMapper.addStudent(students);
-        System.out.println("这是结果返回 : "+s);
+        studentMapper.addStudent(students);
     }
 
     @Test
     void selectById() {
         List<students> students = studentMapper.selectById(5);
         for (students a : students){
+            System.out.println();
+            System.out.println("--------------------------------------");
             System.out.println(a.toString());
+            System.out.println("--------------------------------------");
+            System.out.println();
         }
     }
 

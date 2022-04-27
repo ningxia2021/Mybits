@@ -30,7 +30,7 @@
         [parameterType 方法中参数的类型，如果是引用对象 那么也必须要是全路径]
         [定义sql语句 ,采用#{from}的方式实现动态传参 #{from}相当于 message.getFrom()]
             <mapper namespace = "com.example.mybatis.dao.studentMapper">
-                <insert id="addStudent" parameterType="com.example.mybatis.model.students">
+                <insert id="addStudent" parameterType="java.lang.Integer">
                     insert into students values(#{id},#{name},#{age},#{sec});
                 </insert>
             </mapper>     
@@ -41,7 +41,7 @@
     
 6. select
     [resultType 返回类型，如果实体类和数据库表的字段一致，则可以直接写引用对象的全路径,也可以不写]
-        <select id="selectById" parameterType="Integer" resultType="com.example.mybatis.model.students">
+        <select id="selectById" parameterType="com.example.mybatis.model.students" resultType="com.example.mybatis.model.students">
             select * from students where id = #{id};
         </select>
     [resultMap 结果的映射，针对表字段与实体类不统一的情况 这里的resultMap="map"  map只是对其命名,是id，其映射关系需要单独构造]
