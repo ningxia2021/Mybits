@@ -6,9 +6,14 @@ import java.util.List;
 
 @Mapper
 public interface studentMapper {
-    public void addStudent(students student);
+    void addStudent(students student);
 
-    public List<students> selectById(int id);
+    List<students> selectById(int id);
 
-    public List<students> selectByName(String name);
+    List<students> selectByName(String name);
+
+    int updateName(students s);
+    int updateByName(String name,int id); //当有两个参数时，要么传对象，要么不要设置parameterType
+
+    int delById(int id);
 }

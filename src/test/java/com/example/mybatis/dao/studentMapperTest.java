@@ -22,16 +22,16 @@ class studentMapperTest {
     @Test
     void addStudent() {
         students students = new students();
-        students.setId(5);
-        students.setName("西安人不管到哪儿");
+        students.setId(10);
+        students.setName("今天是2022");
         students.setAge(23);
-        students.setSec("都不能不吃泡馍");
+        students.setSec("又要被封了");
         studentMapper.addStudent(students);
     }
 
     @Test
     void selectById() {
-        List<students> students = studentMapper.selectById(5);
+        List<students> students = studentMapper.selectById(10);
         for (students a : students){
             System.out.println();
             System.out.println("--------------------------------------");
@@ -48,6 +48,35 @@ class studentMapperTest {
         System.out.println("--------------------------------------");
         System.out.println(students.toString());
         System.out.println("--------------------------------------");
+        System.out.println();
+    }
+
+    @Test
+    void updateName() {
+        students s = new students();
+        s.setName("gaoh");
+        s.setId(10);
+        System.out.println();
+        System.out.println("----------------------------------------");
+        System.out.println(" SQL 改动的行数为 :"+studentMapper.updateName(s));
+        System.out.println(studentMapper.selectById(10));
+        System.out.println("----------------------------------------");
+        System.out.println();
+    }
+
+    @Test
+    void delById() {
+        studentMapper.delById(10);
+    }
+
+    @Test
+    void updateByName() {
+        int ret = studentMapper.updateByName("liming", 6);
+        System.out.println();
+        System.out.println("----------------------------------------");
+        System.out.println(ret);
+        System.out.println(studentMapper.selectById(6));
+        System.out.println("----------------------------------------");
         System.out.println();
     }
 }
