@@ -2,8 +2,6 @@ package com.example.mybatis.dao;
 
 import com.example.mybatis.model.students;
 import org.apache.ibatis.annotations.Mapper;
-
-import java.util.HashMap;
 import java.util.List;
 
 @Mapper
