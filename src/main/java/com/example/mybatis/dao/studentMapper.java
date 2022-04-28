@@ -16,4 +16,7 @@ public interface studentMapper {
     int updateByName(String name,int id); //当有两个参数时，要么传对象，要么不要设置parameterType
 
     int delById(int id);
+
+    List<students> selectAllById(String ord);
+
 }

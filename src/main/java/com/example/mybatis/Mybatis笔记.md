@@ -55,3 +55,6 @@
                 <result column="Student_Age" property="age"/>
                 <result column="Student_Sec" property="sec"/>
         </resultMap>
+7. #{} 与 ${} 的区别
+    #{xx} 当转换成sql语句时，对里面的变量加了‘xx’，而${} 则 不会加''
+    因此，当报错的时候可以找一找这方面的原因

@@ -2,6 +2,7 @@ package com.example.mybatis.dao;
 
 import com.example.mybatis.model.students;
 import lombok.extern.slf4j.Slf4j;
+import net.minidev.json.JSONUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -71,12 +72,22 @@ class studentMapperTest {
 
     @Test
     void updateByName() {
-        int ret = studentMapper.updateByName("liming", 6);
+        int ret = studentMapper.updateByName("hah", 6);
         System.out.println();
         System.out.println("----------------------------------------");
         System.out.println(ret);
         System.out.println(studentMapper.selectById(6));
         System.out.println("----------------------------------------");
         System.out.println();
+    }
+
+    @Test
+    void selectAllById() {
+        List<students> desc = studentMapper.selectAllById("desc");
+//        for (students s:desc) {
+//            System.out.println();
+//            System.out.println(s);
+//        }
+        desc.forEach(System.out::println);
     }
 }

@@ -33,6 +33,9 @@
     <select id="selectByName" resultMap="map">
         select * from students where name = #{name};
     </select>
+    <select id="selectAllById" resultType="com.example.mybatis.model.students">
+        select * from students order by id ${order}
+    </select>
     <delete id="delById">
         delete from students where id = #{id};
     </delete>
