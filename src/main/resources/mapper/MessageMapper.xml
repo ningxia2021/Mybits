@@ -19,24 +19,31 @@
 <!-- 定义sql语句 -->
         insert into students values(#{id},#{name},#{age},#{sec});
     </insert>
+
     <update id="updateName" parameterType="com.example.mybatis.model.students">
         update students set name = #{name} where id = #{id};
     </update>
+
     <update id="updateByName">
         update students set name = #{name} where id = #{id};
     </update>
+
     <!-- resultType 返回类型，如果实体类和数据库表的字段一致，则可以直接写引用对象的全路径   -->
     <select id="selectById" parameterType="com.example.mybatis.model.students" resultType="com.example.mybatis.model.students">
         select * from students where id = #{id};
     </select>
+
 <!-- resultMap 结果的映射，针对表字段与实体类不统一的情况 这里的resultMap="map"  map只是对其命名,是id，其映射关系需要单独构造-->
     <select id="selectByName" resultMap="map">
-        select * from students where name = #{name};
+        select * from students where name = #{name}
     </select>
+
     <select id="selectAllById" resultType="com.example.mybatis.model.students">
         select * from students order by id ${order}
     </select>
+
     <delete id="delById">
         delete from students where id = #{id};
     </delete>
+
 </mapper>
