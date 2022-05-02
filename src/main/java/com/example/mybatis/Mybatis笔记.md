@@ -64,4 +64,60 @@
         [一对一]
             
         [一对多]
-        
+9. [动态SQL]
+    解决 SQL中传入的参数不确定 的问题
+    [if]
+        <if test="username != null>
+            username = #{username};
+        </if>
+    [set]
+    set标签用于更新语句中,这里set标签将解析为set关键字;以下与if的配合操作属于固定输入套路！只有至少存在一个判断结果为true的if时，才会解析set
+    set 元素会动态地在行首插入 SET 关键字，并会删掉额外的逗号,这一操作与 <trim prefix="SET" suffixOverrides=","></trim> 等价
+        update tb_admin_user
+            <set>
+              <if test="loginUserName != null">
+                login_user_name = #{loginUserName,jdbcType=VARCHAR},
+              </if>
+              <if test="loginPassword != null">
+                login_password = #{loginPassword,jdbcType=VARCHAR},
+              </if>
+              <if test="nickName != null">
+                nick_name = #{nickName,jdbcType=VARCHAR},
+              </if>
+              <if test="locked != null">
+                locked = #{locked,jdbcType=TINYINT},
+              </if>
+            </set>
+        where admin_user_id = #{adminUserId,jdbcType=INTEGER}
+    [trim]
+    prefix : 在SQL 语句中解析定义的内容 suffixOverrides:去掉sql语句中多余的逗号
+         insert into tb_admin_user
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+              <if test="adminUserId != null">
+                admin_user_id,
+              </if>
+              <if test="loginUserName != null">
+                login_user_name,
+              </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+              <if test="adminUserId != null">
+                #{adminUserId,jdbcType=INTEGER},
+              </if>
+              <if test="loginUserName != null">
+                #{loginUserName,jdbcType=VARCHAR},
+              </if>
+            </trim>
+     [where]
+         <where>
+             <if test="state != null">
+                  state = #{state}
+             </if>
+             <if test="title != null">
+                 AND title like #{title}
+             </if>
+             <if test="author != null and author.name != null">
+                 AND author_name like #{author.name}
+             </if>
+         </where>
+    
