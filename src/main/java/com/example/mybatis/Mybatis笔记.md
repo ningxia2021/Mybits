@@ -59,6 +59,9 @@
 7. #{} 与 ${} 的区别
     #{xx} 当转换成sql语句时，对里面的变量加了‘xx’，而${} 则 不会加''
     因此，当报错时候可以找一找这方面的原因，但是${}会引入sql 注入的问题!
+    解决sql注入问题的方案：
+        1.手动过滤传递过来的参数(不建议使用)
+        2.使用系统提供的方法来避免(concat 实现查询值的拼接)
 8. [进阶]
     多表查询
         [一对一]
@@ -120,4 +123,12 @@
                  AND author_name like #{author.name}
              </if>
          </where>
-    
+    [foreach]
+        update tb_blog
+                set blog_category_id = #{categoryId,jdbcType=INTEGER},
+                blog_category_name = #{categoryName,jdbcType=VARCHAR}
+                where blog_category_id in
+                <foreach item="id" collection="ids" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+        and is_deleted =0
